@@ -43,9 +43,13 @@ public class NewPoke extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet NewPoke</title>");
+            out.println("<link href=\"bootstrap-3.3.7-dist/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/>");
+            out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>");
+            out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet NewPoke at " + request.getContextPath() + "</h1>");
+
             String name = request.getParameter("name");
             String type = request.getParameter("type");
             String ability = request.getParameter("ability");
@@ -54,14 +58,20 @@ public class NewPoke extends HttpServlet {
             Integer spd = Integer.parseInt(request.getParameter("speed"));
             Integer hp = Integer.parseInt(request.getParameter("life"));
             String trainer = request.getParameter("trainer");
-            
-            
-            
-            Pokemon p = new Pokemon();
-            if (miEjb.insertPoke(p)) {
-                out.println("<h1 class=\"bg-success\">New Pokemon created!</h1>");
-            } else {
-                out.println("<h1 class=\"bg-danger\">That Pokemon already exists!</h1>");
+
+            Pokemon p = new Pokemon(name, type, ability, atk, def, spd, hp, 0);
+            Trainer t = miEjb.findTrainer(trainer);
+            p.setTrainer(t);
+            if (miEjb.hasSixPokemon(miEjb.findTrainer(t.getName()))) {
+
+                //out.println(miEjb.hasSixPokemon(miEjb.findTrainer(t.getName())));
+                if (miEjb.insertPoke(p)) {
+                    out.println("<h1 class=\"bg-success\">New Pokemon created!</h1>");
+                } else {
+                    out.println("<h1 class=\"bg-danger\">That Pokemon already exists!</h1>");
+                }
+            }else{
+                out.println("<h1 class=\"bg-danger\">You already have 6 pokemons!</h1>");
             }
             out.println("</body>");
             out.println("</html>");

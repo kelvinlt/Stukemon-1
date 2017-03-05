@@ -8,6 +8,58 @@
         <servlet-name>NewPoke</servlet-name>
         <servlet-class>Servlets.NewPoke</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowPokemon</servlet-name>
+        <servlet-class>Servlets.ShowPokemon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePokemon</servlet-name>
+        <servlet-class>Servlets.DeletePokemon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BattleSelectTrainer</servlet-name>
+        <servlet-class>Servlets.BattleSelectTrainer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BattleSelectPokemon</servlet-name>
+        <servlet-class>Servlets.BattleSelectPokemon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BattlePokemon</servlet-name>
+        <servlet-class>Servlets.BattlePokemon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HealSelectTrainer</servlet-name>
+        <servlet-class>Servlets.HealSelectTrainer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HealSelectPokemon</servlet-name>
+        <servlet-class>Servlets.HealSelectPokemon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HealPokemon</servlet-name>
+        <servlet-class>Servlets.HealPokemon</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PotionSelectTrainer</servlet-name>
+        <servlet-class>Servlets.PotionSelectTrainer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetPotionsTrainer</servlet-name>
+        <servlet-class>Servlets.GetPotionsTrainer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PokemonRanking</servlet-name>
+        <servlet-class>Servlets.PokemonRanking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrainerRanking</servlet-name>
+        <servlet-class>Servlets.TrainerRanking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RankingBattle</servlet-name>
+        <servlet-class>Servlets.RankingBattle</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewTrainer</servlet-name>
         <url-pattern>/NewTrainer</url-pattern>
@@ -15,6 +67,58 @@
     <servlet-mapping>
         <servlet-name>NewPoke</servlet-name>
         <url-pattern>/NewPoke</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowPokemon</servlet-name>
+        <url-pattern>/ShowPokemon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePokemon</servlet-name>
+        <url-pattern>/DeletePokemon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BattleSelectTrainer</servlet-name>
+        <url-pattern>/BattleSelectTrainer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BattleSelectPokemon</servlet-name>
+        <url-pattern>/BattleSelectPokemon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BattlePokemon</servlet-name>
+        <url-pattern>/BattlePokemon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HealSelectTrainer</servlet-name>
+        <url-pattern>/HealSelectTrainer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HealSelectPokemon</servlet-name>
+        <url-pattern>/HealSelectPokemon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HealPokemon</servlet-name>
+        <url-pattern>/HealPokemon</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PotionSelectTrainer</servlet-name>
+        <url-pattern>/PotionSelectTrainer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetPotionsTrainer</servlet-name>
+        <url-pattern>/GetPotionsTrainer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PokemonRanking</servlet-name>
+        <url-pattern>/PokemonRanking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrainerRanking</servlet-name>
+        <url-pattern>/TrainerRanking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RankingBattle</servlet-name>
+        <url-pattern>/RankingBattle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

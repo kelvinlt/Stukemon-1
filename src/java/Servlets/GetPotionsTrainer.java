@@ -6,23 +6,21 @@
 package Servlets;
 
 import Beans.StukemonEJB;
+import Entities.Pokemon;
 import Entities.Trainer;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Y3895917F
+ * @author Alfredo
  */
-@WebServlet(name = "RegisterPoke", urlPatterns = {"/RegisterPoke"})
-public class RegisterPoke extends HttpServlet {
+public class GetPotionsTrainer extends HttpServlet {
 
     @EJB
     StukemonEJB miEjb;
@@ -44,50 +42,24 @@ public class RegisterPoke extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterPoke</title>");
+            out.println("<title>Servlet GetPotionsTrainer</title>");
             out.println("<link href=\"bootstrap-3.3.7-dist/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/>");
             out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>");
             out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>");
             out.println("</head>");
-            out.println("<body class=\"container\">");
-            out.println("<h1>Servlet RegisterPoke at " + request.getContextPath() + "</h1>");
-            out.println("<form action=\"NewPoke\" method=\"GET\">");
-             out.println("<label>Name</label>");
-             out.println("<input type=\"text\" class=\"form-control\" name=\"name\">");
-             out.println("<label>Type</label>");
-             out.println("<input type=\"text\" class=\"form-control\" name=\"type\">");
-             out.println("<label>Ability</label>");
-             out.println("<input type=\"text\" class=\"form-control\" name=\"ability\">");
-             out.println("<label>ATK</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"attack\">");
-             out.println("<label>DEF</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"defense\">");
-             out.println("<label>SPEED</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"speed\">");
-             out.println("<label>HP</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"life\">");
-             out.println("<label>trainer</label>");
-             out.println("<select class=\"form-control\" name=\"trainer\">");
-             
-            try {
-
-               
-                List<Trainer> allTrainers = miEjb.selectAllTrainers();
-
-                for (Trainer currentTrainer : allTrainers) {
-
-                    
-                    //out.println(currentTrainer.getName());
-                    out.println("<option class=\"form-control\" value="+currentTrainer.getName()+">"+currentTrainer.getName()+"</option>");
-                }
+            out.println("<body>");
+            out.println("<h1>Servlet GetPotionsTrainer at " + request.getContextPath() + "</h1>");
+            Trainer t = miEjb.findTrainer(request.getParameter("trainer"));
+            if(t.getPoints()>=10){
+                out.println("<h1 class=\"bg-success\">You have adquiered 1 potion!</h1>");
+                t.setPoints(t.getPoints()-10);
+                t.setPotions(t.getPotions()+1);
+                miEjb.updateTrainer(t);
+                out.println("<p>You have "+t.getPoints()+" points left!</p>");
                 
-               //Trainer t = allTrainers.get(allTrainers.indexOf(new Trainer("trainer")));
-            } catch (Exception e) {
-                e.printStackTrace();
+            }else{
+                out.println("<h1 class=\"bg-danger\">You dont have enough points!</h1>");
             }
-            out.println("</select>");
-            out.println("<input type=\"submit\" value=\"Register\" class=\"btn btn-info\">");
-             out.println("</form>");
             out.println("</body>");
             out.println("</html>");
         }

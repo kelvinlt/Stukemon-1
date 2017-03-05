@@ -6,23 +6,22 @@
 package Servlets;
 
 import Beans.StukemonEJB;
+import Entities.Pokemon;
 import Entities.Trainer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Y3895917F
+ * @author Alfredo
  */
-@WebServlet(name = "RegisterPoke", urlPatterns = {"/RegisterPoke"})
-public class RegisterPoke extends HttpServlet {
+public class TrainerRanking extends HttpServlet {
 
     @EJB
     StukemonEJB miEjb;
@@ -44,50 +43,53 @@ public class RegisterPoke extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegisterPoke</title>");
+            out.println("<title>Servlet Ranking Trainer</title>");
             out.println("<link href=\"bootstrap-3.3.7-dist/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\"/>");
             out.println("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>");
             out.println("<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>");
             out.println("</head>");
-            out.println("<body class=\"container\">");
-            out.println("<h1>Servlet RegisterPoke at " + request.getContextPath() + "</h1>");
-            out.println("<form action=\"NewPoke\" method=\"GET\">");
-             out.println("<label>Name</label>");
-             out.println("<input type=\"text\" class=\"form-control\" name=\"name\">");
-             out.println("<label>Type</label>");
-             out.println("<input type=\"text\" class=\"form-control\" name=\"type\">");
-             out.println("<label>Ability</label>");
-             out.println("<input type=\"text\" class=\"form-control\" name=\"ability\">");
-             out.println("<label>ATK</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"attack\">");
-             out.println("<label>DEF</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"defense\">");
-             out.println("<label>SPEED</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"speed\">");
-             out.println("<label>HP</label>");
-             out.println("<input type=\"number\" class=\"form-control\" name=\"life\">");
-             out.println("<label>trainer</label>");
-             out.println("<select class=\"form-control\" name=\"trainer\">");
-             
-            try {
+            out.println("<body class=\"container-fluid\">");
+            out.println("<h1>Servlet Ranking Trainer at " + request.getContextPath() + "</h1>");
+            List<Trainer> allTrainer = miEjb.getTrainerRanking();
+            out.println("<div class=\"row\">");
+            out.println("<div class=\"col-lg-4\">");
+            out.println("<label>Trainer</label>");
+            out.println("</div>");
+            out.println("<div class=\"col-lg-4\">");
+            out.println("<label>Points</label>");
+            out.println("</div>");
+            out.println("<div class=\"col-lg-4\">");
+            out.println("<label>Potions</label>");
+            out.println("</div>");
+            out.println("</div>");
+            out.println("<hr>");
+            out.println("<div class=\"row\">");
+            for (Trainer currentTrainer: allTrainer) {
+                out.println("<form action=\"DeletePokemon\" method=\"GET\">");
 
-               
-                List<Trainer> allTrainers = miEjb.selectAllTrainers();
+                out.println("<div class=\"col-lg-4\">");
+                //out.println(currentTrainer.getName());
+                //out.println(currentPoke.toString());
+                out.println("<label>" + currentTrainer.getName() + "</label>");
+                out.println("</div>");
+                out.println("<div class=\"col-lg-4\">");
+                //out.println(currentTrainer.getName());
+                //out.println(currentPoke.toString());
+                out.println("<label>" + currentTrainer.getPoints()+"</label>");
+                out.println("</div>");
+                out.println("<div class=\"col-lg-4\">");
+                out.println("<label>" + currentTrainer.getPotions()+ "</label>");
+                //out.println(currentTrainer.getName());
+                //out.println(currentPoke.toString());
+                //out.println("<input type=\"submit\" value=\"Delete\" class=\"btn btn-info\">");
+                //out.println("<input type=\"hidden\" class=\"form-control\" name=\"name\" value=\"" + currentPoke.getName() + "\">");
 
-                for (Trainer currentTrainer : allTrainers) {
-
-                    
-                    //out.println(currentTrainer.getName());
-                    out.println("<option class=\"form-control\" value="+currentTrainer.getName()+">"+currentTrainer.getName()+"</option>");
-                }
-                
-               //Trainer t = allTrainers.get(allTrainers.indexOf(new Trainer("trainer")));
-            } catch (Exception e) {
-                e.printStackTrace();
+                out.println("</div>");
+                out.println("</form>");
             }
-            out.println("</select>");
-            out.println("<input type=\"submit\" value=\"Register\" class=\"btn btn-info\">");
-             out.println("</form>");
+
+            out.println("</div>");
+
             out.println("</body>");
             out.println("</html>");
         }

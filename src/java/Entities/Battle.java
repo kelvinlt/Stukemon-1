@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Battle.findAll", query = "SELECT b FROM Battle b"),
+    @NamedQuery(name = "Battle.findRanking", query = "SELECT count(b) AS victories ,b.winner FROM Battle b GROUP BY b.winner order by VICTORIES desc "),
     @NamedQuery(name = "Battle.findByIdbattle", query = "SELECT b FROM Battle b WHERE b.idbattle = :idbattle")})
 public class Battle implements Serializable {
 
