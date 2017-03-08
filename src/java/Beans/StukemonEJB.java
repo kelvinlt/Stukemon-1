@@ -82,6 +82,28 @@ public class StukemonEJB {
     public List<Trainer> selectAllTrainers() {
         return emf.createEntityManager().createNamedQuery("Trainer.findAll").getResultList();
     }
+    
+    public List<Trainer> selectAllTrainersWithPoke(){
+        List<Trainer> listTrainer = emf.createEntityManager().createNamedQuery("Trainer.findAll").getResultList();
+        List<Trainer> retTrainer = new ArrayList<>();
+        for(Trainer currentTrainer: listTrainer){
+            if(currentTrainer.getPokemonCollection().size()<6){
+                retTrainer.add(currentTrainer);
+            }
+        }
+        return retTrainer;
+    }
+    
+    public List<Trainer> selectAllTrainersWithPokeAndPotion(){
+        List<Trainer> listTrainer = emf.createEntityManager().createNamedQuery("Trainer.findAll").getResultList();
+        List<Trainer> retTrainer = new ArrayList<>();
+        for(Trainer currentTrainer: listTrainer){
+            if(currentTrainer.getPokemonCollection().size()>0 && currentTrainer.getPotions()>0){
+                retTrainer.add(currentTrainer);
+            }
+        }
+        return retTrainer;
+    }
 
     public List<Pokemon> selectAllPokemon() {
         return emf.createEntityManager().createNamedQuery("Pokemon.findAll").getResultList();

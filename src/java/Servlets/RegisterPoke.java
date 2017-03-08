@@ -72,7 +72,7 @@ public class RegisterPoke extends HttpServlet {
             try {
 
                
-                List<Trainer> allTrainers = miEjb.selectAllTrainers();
+                List<Trainer> allTrainers = miEjb.selectAllTrainersWithPoke();
 
                 for (Trainer currentTrainer : allTrainers) {
 

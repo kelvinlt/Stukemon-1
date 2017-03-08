@@ -54,7 +54,7 @@ public class HealSelectTrainer extends HttpServlet {
             try {
 
                
-                List<Trainer> allTrainers = miEjb.selectAllTrainers();
+                List<Trainer> allTrainers = miEjb.selectAllTrainersWithPokeAndPotion();
 
                 for (Trainer currentTrainer : allTrainers) {
 

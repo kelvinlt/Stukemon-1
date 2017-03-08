@@ -50,10 +50,12 @@ public class GetPotionsTrainer extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet GetPotionsTrainer at " + request.getContextPath() + "</h1>");
             Trainer t = miEjb.findTrainer(request.getParameter("trainer"));
-            if(t.getPoints()>=10){
-                out.println("<h1 class=\"bg-success\">You have adquiered 1 potion!</h1>");
-                t.setPoints(t.getPoints()-10);
-                t.setPotions(t.getPotions()+1);
+            int amount = Integer.parseInt(request.getParameter("amount"));
+            
+            if(t.getPoints()>=amount*10){
+                out.println("<h1 class=\"bg-success\">You have adquiered "+amount+" potions!</h1>");
+                t.setPoints(t.getPoints()-(amount*10));
+                t.setPotions(t.getPotions()+amount);
                 miEjb.updateTrainer(t);
                 out.println("<p>You have "+t.getPoints()+" points left!</p>");
                 

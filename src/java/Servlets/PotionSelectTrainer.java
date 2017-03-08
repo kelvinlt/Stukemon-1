@@ -60,7 +60,7 @@ public class PotionSelectTrainer extends HttpServlet {
                 for (Trainer currentTrainer : allTrainers) {
 
                     //out.println(currentTrainer.getName());
-                    out.println("<option class=\"form-control\" value=" + currentTrainer.getName() + ">" + currentTrainer.getName() + "</option>");
+                    out.println("<option class=\"form-control\" value=" + currentTrainer.getName() + ">" + currentTrainer.getName() + " Points: "+currentTrainer.getPoints()+"</option>");
                 }
 
                 //Trainer t = allTrainers.get(allTrainers.indexOf(new Trainer("trainer")));
@@ -69,6 +69,8 @@ public class PotionSelectTrainer extends HttpServlet {
             }
 
             out.println("</select>");
+            out.println("<label>Amount</label>");
+            out.println("<input type=\"number\" class=\"form-control\" name=\"amount\">");
 
             out.println("<input type=\"submit\" value=\"Select!\" class=\"btn btn-info\">");
             out.println("</body>");
